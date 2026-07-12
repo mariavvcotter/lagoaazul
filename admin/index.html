@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Administração · Lagoa Azul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --navy: #0b1526; --cyan: #2fd3e0; --cyan-soft: #64e9eb; --line: rgba(47,211,224,.18); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center; padding: 24px;
+      color: #eaf3f7;
+      background:
+        radial-gradient(1000px 500px at 70% -10%, rgba(47,211,224,.2), transparent 60%),
+        linear-gradient(180deg, #0b1526 0%, #0d1b31 60%, #0b1526 100%);
+    }
+    .panel {
+      width: 100%; max-width: 520px; background: rgba(255,255,255,.04);
+      border: 1px solid var(--line); border-radius: 22px; padding: 40px;
+      box-shadow: 0 24px 70px rgba(3,12,26,.5); backdrop-filter: blur(8px);
+    }
+    .brand { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+    .brand .name { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; color: var(--cyan); }
+    h1 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: 30px; margin-bottom: 6px; }
+    .sub { color: #a7b6c8; font-size: 15px; margin-bottom: 28px; line-height: 1.55; }
+    label { display: block; font-size: 13px; letter-spacing: .4px; color: #a7b6c8; margin-bottom: 8px; }
+    input[type=email] {
+      width: 100%; padding: 14px 16px; border-radius: 12px; font-size: 16px; font-family: inherit;
+      border: 1px solid rgba(138,153,174,.3); background: rgba(11,21,38,.55); color: #eaf3f7;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input[type=email]:focus { outline: none; border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(47,211,224,.15); }
+    .current { margin: 14px 0 22px; font-size: 14px; color: #8a99ae; }
+    .current b { color: var(--cyan-soft); font-weight: 600; }
+    .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    button {
+      flex: 1; min-width: 140px; padding: 14px 22px; border-radius: 999px; border: none; cursor: pointer;
+      font-weight: 600; font-size: 15px; font-family: inherit; transition: transform .15s, box-shadow .2s, opacity .2s;
+    }
+    .save { background: var(--cyan); color: #04222a; box-shadow: 0 8px 24px rgba(47,211,224,.35); }
+    .save:hover { transform: translateY(-1px); }
+    .reset { background: transparent; color: var(--cyan); border: 1px solid var(--cyan); }
+    .msg { margin-top: 20px; padding: 13px 16px; border-radius: 12px; font-size: 14px; display: none; }
+    .msg.ok { display: block; background: rgba(47,211,224,.12); border: 1px solid rgba(47,211,224,.4); color: #b8f4f8; }
+    .msg.err { display: block; background: rgba(255,138,128,.1); border: 1px solid rgba(255,138,128,.4); color: #ffb4ab; }
+    .note { margin-top: 26px; font-size: 12.5px; color: #6b7c90; line-height: 1.6; border-top: 1px solid var(--line); padding-top: 20px; }
+    .back { display: inline-block; margin-top: 18px; color: var(--cyan); text-decoration: none; font-size: 14px; }
+    .back:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <div class="brand">
+      <svg width="34" height="34" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="50" cy="46" r="40" fill="none" stroke="#2fd3e0" stroke-width="5"></circle>
+        <path d="M28 60 q18 -30 46 -9 q-11 -23 -33 -16 q17 3 20 20 q-20 -13 -33 5z" fill="#64e9eb"></path>
+      </svg>
+      <span class="name">Lagoa Azul</span>
+    </div>
+
+    <h1>Administração</h1>
+    <p class="sub">Defina o email para onde são enviadas as reservas do formulário «Marcar Mesa».</p>
+
+    <label for="emailInput">Email das reservas</label>
+    <input type="email" id="emailInput" placeholder="nome@exemplo.com" autocomplete="email">
+    <p class="current">A usar atualmente: <b id="currentEmail">—</b></p>
+
+    <div class="row">
+      <button class="save" id="saveBtn">Guardar</button>
+      <button class="reset" id="resetBtn">Repor por defeito</button>
+    </div>
+
+    <div class="msg" id="msg" role="status" aria-live="polite"></div>
+
+    <p class="note">
+      <b style="color:#8a99ae;">Nota:</b> esta alteração fica guardada apenas neste dispositivo/browser.
+      Por defeito, as reservas vão para <span id="defaultEmail" style="color:#8a99ae;"></span>.
+      Para alterar o email de forma permanente para todos os clientes, é preciso atualizar o valor por
+      defeito no código do site — peça ajuda para fazer essa alteração definitiva.
+    </p>
+
+    <a class="back" href="../">← Voltar ao site</a>
+  </div>
+
+  <script>
+    var DEFAULT_RESERVATION_EMAIL = 'mariavcotter@gmail.com';
+    var KEY = 'lagoaazul_reservation_email';
+
+    var emailInput = document.getElementById('emailInput');
+    var currentEmail = document.getElementById('currentEmail');
+    var msg = document.getElementById('msg');
+    document.getElementById('defaultEmail').textContent = DEFAULT_RESERVATION_EMAIL;
+
+    function isValid(v) { return /^\S+@\S+\.\S+$/.test(v); }
+
+    function currentValue() {
+      try {
+        var saved = localStorage.getItem(KEY);
+        if (saved && isValid(saved)) return saved;
+      } catch (e) {}
+      return DEFAULT_RESERVATION_EMAIL;
+    }
+
+    function refresh() {
+      var cur = currentValue();
+      currentEmail.textContent = cur;
+      emailInput.value = cur;
+    }
+
+    function showMsg(text, type) { msg.textContent = text; msg.className = 'msg ' + type; }
+
+    document.getElementById('saveBtn').addEventListener('click', function () {
+      var v = emailInput.value.trim();
+      if (!isValid(v)) { showMsg('Por favor introduza um email válido.', 'err'); return; }
+      try {
+        localStorage.setItem(KEY, v);
+        refresh();
+        showMsg('✓ Email guardado. As reservas neste dispositivo passam a ir para ' + v + '.', 'ok');
+      } catch (e) {
+        showMsg('Não foi possível guardar neste browser.', 'err');
+      }
+    });
+
+    document.getElementById('resetBtn').addEventListener('click', function () {
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      refresh();
+      showMsg('Reposto para o email por defeito (' + DEFAULT_RESERVATION_EMAIL + ').', 'ok');
+    });
+
+    refresh();
+  </script>
+</body>
+</html>
