@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ementa · Lagoa Azul · Restaurante</title>
+  <meta name="description" content="Ementa do Restaurante Lagoa Azul — entradas, petiscos, peixe, carne, bebidas e carta de vinhos.">
+  <meta name="theme-color" content="#0b1526">
+  <link rel="stylesheet" href="fonts.css">
+  <style>
+    :root {
+      --ink-950: #070c16;
+      --ink-900: #0b1526;
+      --ink-800: #132238;
+      --ink-700: #18273e;
+      --ink-600: #24344f;
+      --ink-500: #35486a;
+      --aqua-200: #b8f4f6;
+      --aqua-300: #64e9eb;
+      --aqua-400: #2fd3e0;
+      --aqua-600: #0f9fb4;
+      --sand-200: #e7e0cf;
+      --paper: #f5f1e6;
+      --gold: #c6a34e;
+      --gold-deep: #9a7c2f;
+
+      --font-display: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+      --font-script: "Great Vibes", "Segoe Script", cursive;
+      --font-body: "Mulish", ui-sans-serif, system-ui, -apple-system, sans-serif;
+      --font-condensed: "Oswald", "Arial Narrow", sans-serif;
+
+      --muted: #b9c4d4;
+      --hair: rgba(184, 244, 246, 0.16);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: #eaf2f6;
+      background:
+        radial-gradient(1100px 600px at 50% -8%, #12314a 0%, rgba(18,49,74,0) 60%),
+        radial-gradient(900px 500px at 90% 12%, rgba(15,159,180,0.12) 0%, rgba(15,159,180,0) 55%),
+        linear-gradient(180deg, var(--ink-900) 0%, var(--ink-950) 100%);
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 20px; }
+
+    /* ---------- Sticky category nav ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(7, 12, 22, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--hair);
+    }
+    .topbar .wrap { display: flex; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
+    .topbar .brand-mini { display: flex; align-items: center; gap: 9px; flex: 0 0 auto; text-decoration: none; }
+    .topbar .brand-mini svg { width: 26px; height: 26px; }
+    .topbar .brand-mini b {
+      font-family: var(--font-script); font-weight: 400;
+      font-size: 20px; color: var(--aqua-300); line-height: 1;
+    }
+    .nav-scroll { flex: 1 1 auto; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%); }
+    .nav-scroll::-webkit-scrollbar { display: none; }
+    .nav-scroll ul { display: flex; gap: 7px; list-style: none; padding: 2px 4px; }
+    .nav-scroll a {
+      display: block; white-space: nowrap; text-decoration: none;
+      font-family: var(--font-condensed); font-weight: 500;
+      font-size: 12.5px; letter-spacing: 0.11em; text-transform: uppercase;
+      color: var(--muted); padding: 6px 12px; border-radius: 999px;
+      border: 1px solid transparent; transition: color .2s, background .2s, border-color .2s;
+    }
+    .nav-scroll a:hover, .nav-scroll a:focus { color: var(--ink-950); background: var(--aqua-300); }
+
+    /* ---------- Hero ---------- */
+    header.hero { text-align: center; padding: 54px 20px 30px; }
+    .hero .mark { width: 92px; height: 92px; margin: 0 auto 14px; }
+    .hero .script {
+      font-family: var(--font-script); font-weight: 400;
+      font-size: clamp(56px, 15vw, 84px); line-height: 0.9;
+      color: transparent; background: linear-gradient(180deg, #ffffff 0%, var(--aqua-200) 48%, var(--aqua-400) 100%);
+      -webkit-background-clip: text; background-clip: text;
+      padding: 0 10px 6px;
+    }
+    .hero .sub {
+      font-family: var(--font-display); font-weight: 500;
+      font-size: clamp(13px, 3.6vw, 16px); letter-spacing: 0.44em;
+      text-indent: 0.44em; color: var(--sand-200); margin-top: 2px;
+    }
+    .hero .tag {
+      margin-top: 20px; color: var(--muted);
+      font-size: 13px; letter-spacing: 0.02em;
+    }
+    .hero .tag span { color: var(--aqua-300); }
+
+    /* ---------- Featured menu cards ---------- */
+    .features { display: grid; gap: 16px; margin: 8px 0 40px; }
+
+    .feat {
+      position: relative; overflow: hidden;
+      border-radius: 18px;
+      background: linear-gradient(180deg, var(--ink-700) 0%, var(--ink-800) 100%);
+      border: 1px solid var(--hair);
+      box-shadow: 0 18px 40px -24px rgba(0,0,0,0.8);
+      padding: 22px 22px 20px;
+    }
+    .feat .ribbon {
+      display: inline-block;
+      font-family: var(--font-condensed); font-weight: 600;
+      font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--ink-950);
+      background: linear-gradient(180deg, #e4c774, var(--gold) 60%, var(--gold-deep));
+      padding: 5px 13px; border-radius: 6px; margin-bottom: 14px;
+    }
+    .feat-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    .feat-title {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(26px, 7vw, 34px); line-height: 1.02;
+      letter-spacing: 0.03em; color: #fff; text-transform: uppercase;
+    }
+    .feat-when { color: var(--aqua-300); font-weight: 600; font-size: 13px; margin-top: 8px; }
+    .feat-price {
+      flex: 0 0 auto;
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(30px, 9vw, 42px); line-height: 1;
+      color: var(--aqua-300);
+    }
+    .feat-note { margin-top: 14px; color: var(--muted); font-size: 13.5px; }
+    .feat .includes {
+      margin-top: 14px; padding: 13px 16px; border-radius: 12px;
+      background: rgba(11, 21, 38, 0.55); border: 1px solid var(--hair);
+      font-size: 13.5px; color: #dbe6ee;
+    }
+    .feat .includes b { color: var(--aqua-200); font-weight: 700; }
+    .feat .fineprint { margin-top: 10px; font-size: 11.5px; color: #8ea0b4; font-style: italic; }
+
+    /* ---------- Menu sections ---------- */
+    section.menu { padding-top: 12px; scroll-margin-top: 66px; }
+    .sec-title {
+      text-align: center; margin: 30px 0 4px;
+      font-family: var(--font-script); font-weight: 400;
+      font-size: clamp(40px, 11vw, 56px); line-height: 1;
+      color: transparent; background: linear-gradient(180deg, #ffffff 0%, var(--aqua-300) 100%);
+      -webkit-background-clip: text; background-clip: text;
+    }
+    .sec-rule {
+      width: 108px; height: 2px; margin: 10px auto 22px;
+      background: linear-gradient(90deg, transparent, var(--aqua-400), transparent);
+      border-radius: 2px;
+    }
+
+    ul.dishes { list-style: none; }
+    .dish {
+      display: flex; align-items: baseline; gap: 8px;
+      padding: 9px 0;
+      border-bottom: 1px dashed rgba(184, 244, 246, 0.10);
+    }
+    .dish:last-child { border-bottom: 0; }
+    .dish .name { font-weight: 600; color: #f2f7fa; font-size: 15.5px; }
+    .dish .lead { flex: 1 1 auto; border-bottom: 1px dotted rgba(184,244,246,0.28); transform: translateY(-3px); min-width: 14px; }
+    .dish .price {
+      flex: 0 0 auto; font-family: var(--font-condensed); font-weight: 500;
+      color: var(--aqua-300); font-size: 15px; letter-spacing: 0.02em;
+    }
+    .dish .desc { display: block; color: var(--muted); font-size: 12.5px; font-weight: 400; margin-top: 3px; max-width: 46ch; }
+    .dish .unit { color: #8ea0b4; font-weight: 400; font-size: 12.5px; }
+
+    /* pill highlight (e.g. Sopa do Dia) */
+    .pill-row { text-align: center; margin: 20px 0 6px; }
+    .pill {
+      display: inline-flex; align-items: baseline; gap: 9px;
+      font-family: var(--font-condensed); letter-spacing: 0.14em; text-transform: uppercase;
+      font-size: 14px; font-weight: 500; color: #eaf2f6;
+      padding: 9px 20px; border-radius: 999px;
+      border: 1.5px solid var(--aqua-400);
+    }
+    .pill .price { color: var(--aqua-300); font-weight: 600; }
+
+    /* wine "three measures" rows */
+    .wine .name { display: block; font-family: var(--font-display); font-weight: 600; letter-spacing: 0.06em; color: #f2f7fa; font-size: 15px; text-transform: uppercase; }
+    .wine .measures { margin-top: 3px; color: var(--muted); font-size: 13px; }
+    .wine .measures b { color: var(--aqua-200); font-weight: 700; }
+    ul.wine-list { list-style: none; text-align: center; }
+    ul.wine-list li { padding: 12px 0; border-bottom: 1px dashed rgba(184,244,246,0.10); }
+    ul.wine-list li:last-child { border-bottom: 0; }
+
+    /* region grouping for carta de vinhos */
+    .region-label {
+      text-align: center; margin: 24px 0 8px;
+      font-family: var(--font-condensed); font-weight: 600;
+      font-size: 13px; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .region-label::before, .region-label::after { content: "·"; color: var(--gold-deep); margin: 0 10px; }
+
+    .lead-note { text-align: center; color: var(--muted); font-size: 12.5px; margin: -8px 0 16px; }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center; padding: 44px 20px 56px; margin-top: 26px;
+      border-top: 1px solid var(--hair);
+    }
+    footer .fmark { width: 40px; height: 40px; margin: 0 auto 12px; opacity: 0.9; }
+    footer .fscript { font-family: var(--font-script); font-size: 30px; color: var(--aqua-300); line-height: 1; }
+    footer .fsub { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.4em; text-indent: 0.4em; color: var(--sand-200); margin-top: 4px; }
+    footer p { color: #8ea0b4; font-size: 12px; margin-top: 16px; }
+    footer .back { display: inline-block; margin-top: 18px; color: var(--aqua-300); text-decoration: none; font-family: var(--font-condensed); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; }
+
+    @media (max-width: 420px) {
+      .feat-head { flex-direction: column; }
+      .feat-price { align-self: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Sticky category nav ===== -->
+  <nav class="topbar" aria-label="Categorias da ementa">
+    <div class="wrap">
+      <a class="brand-mini" href="#top" aria-label="Lagoa Azul — início">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="82" fill="none" stroke="#2fd3e0" stroke-width="9"/><path d="M54 118 q40 -74 112 -22 q-26 -56 -80 -38 q40 8 48 48 q-48 -30 -80 12z" fill="#64e9eb"/></svg>
+        <b>Lagoa Azul</b>
+      </a>
+      <div class="nav-scroll">
+        <ul>
+          <li><a href="#menus">Menus</a></li>
+          <li><a href="#entradas">Entradas</a></li>
+          <li><a href="#petiscos">Petiscos</a></li>
+          <li><a href="#peixe">Peixe</a></li>
+          <li><a href="#carne">Carne</a></li>
+          <li><a href="#bebidas">Bebidas</a></li>
+          <li><a href="#cerveja">Cerveja</a></li>
+          <li><a href="#vinho-casa">Vinho da Casa</a></li>
+          <li><a href="#bar">Bar</a></li>
+          <li><a href="#vinhos">Carta de Vinhos</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== Hero ===== -->
+  <header class="hero" id="top">
+    <svg class="mark" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#2fd3e0" stroke-width="9"/>
+      <path d="M54 118 q40 -74 112 -22 q-26 -56 -80 -38 q40 8 48 48 q-48 -30 -80 12z" fill="#64e9eb"/>
+    </svg>
+    <div class="script">Lagoa Azul</div>
+    <div class="sub">RESTAURANTE</div>
+    <p class="tag">Ementa · Cozinha portuguesa <span>&amp;</span> peixe fresco</p>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ===== Featured menus ===== -->
+    <section class="features" id="menus" aria-label="Menus">
+      <article class="feat">
+        <div class="feat-head">
+          <div>
+            <h2 class="feat-title">Menu Almoço</h2>
+            <div class="feat-when">De Terça a Sábado · 12h às 15h</div>
+          </div>
+          <div class="feat-price">12€</div>
+        </div>
+        <div class="includes">
+          <b>Inclui:</b> Pão · Prato do Dia · Bebida (Refrigerante, Cerveja 20cl, Vinho a copo ou Água) · Café
+        </div>
+        <div class="fineprint">*Excepto feriados</div>
+      </article>
+
+      <article class="feat">
+        <span class="ribbon">Todos os Sábados</span>
+        <div class="feat-head">
+          <div>
+            <h2 class="feat-title">Buffet Africano</h2>
+            <div class="feat-when">Sábados · 13h00 às 17h00</div>
+          </div>
+          <div class="feat-price">25€</div>
+        </div>
+        <div class="feat-note">3 especialidades diferentes todos os sábados.</div>
+      </article>
+    </section>
+
+    <!-- ===== Entradas ===== -->
+    <section class="menu" id="entradas">
+      <h2 class="sec-title">Entradas</h2>
+      <div class="sec-rule"></div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Pão</span><span class="lead"></span><span class="price">1€ <span class="unit">/un.</span></span></li>
+        <li class="dish"><span class="name">Azeitonas</span><span class="lead"></span><span class="price">1,5€</span></li>
+        <li class="dish"><span class="name">Manteiga</span><span class="lead"></span><span class="price">1€</span></li>
+        <li class="dish"><span class="name">Ovos mexidos com Farinheira</span><span class="lead"></span><span class="price">9€</span></li>
+        <li class="dish"><span class="name">Ovos rotos com Presunto</span><span class="lead"></span><span class="price">10,5€</span></li>
+        <li class="dish"><span class="name">Salada de Polvo</span><span class="lead"></span><span class="price">14€</span></li>
+        <li class="dish"><span class="name">Prato de Presunto</span><span class="lead"></span><span class="price">11€</span></li>
+        <li class="dish"><span class="name">Mozzarella</span><span class="lead"></span><span class="price">4€</span></li>
+        <li class="dish"><span class="name">Salgados</span><span class="lead"></span><span class="price">1,5€ <span class="unit">/un.</span></span></li>
+      </ul>
+      <div class="pill-row">
+        <span class="pill">Sopa do Dia <span class="price">2,5€</span></span>
+      </div>
+    </section>
+
+    <!-- ===== Petiscos ===== -->
+    <section class="menu" id="petiscos">
+      <h2 class="sec-title">Petiscos</h2>
+      <div class="sec-rule"></div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Chouriço Assado</span><span class="lead"></span><span class="price">7,5€</span></li>
+        <li class="dish"><span class="name">Dobradinha sem Feijão</span><span class="lead"></span><span class="price">9,5€</span></li>
+        <li class="dish"><span class="name">Codornizes <span class="unit">(2)</span></span><span class="lead"></span><span class="price">6€</span></li>
+        <li class="dish"><span class="name">Moelinhas</span><span class="lead"></span><span class="price">7€</span></li>
+        <li class="dish"><span class="name">Pica Pau de Vitela</span><span class="lead"></span><span class="price">15€</span></li>
+        <li class="dish"><span class="name">Camarão à Guilho</span><span class="lead"></span><span class="price">15€</span></li>
+        <li class="dish"><span class="name">Amêijoas à Bulhão Pato</span><span class="lead"></span><span class="price">6€</span></li>
+        <li class="dish"><span class="name">Peixe Frito ao Molho Escabeche</span><span class="lead"></span><span class="price">6€</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Pratos de Peixe ===== -->
+    <section class="menu" id="peixe">
+      <h2 class="sec-title">Pratos de Peixe</h2>
+      <div class="sec-rule"></div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Choco Grelhado</span><span class="lead"></span><span class="price">16€</span></li>
+        <li class="dish"><span class="name">Bacalhau à Lagareiro</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Dourada Grelhada</span><span class="lead"></span><span class="price">15€</span></li>
+        <li class="dish"><span class="name">Robalo Grelhado</span><span class="lead"></span><span class="price">15€</span></li>
+        <li class="dish"><span class="name">Tilápia</span><span class="lead"></span><span class="price">15€</span></li>
+        <li class="dish"><span class="name">Polvo à Lagareiro</span><span class="lead"></span><span class="price">18€</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Pratos de Carne ===== -->
+    <section class="menu" id="carne">
+      <h2 class="sec-title">Pratos de Carne</h2>
+      <div class="sec-rule"></div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Bitoque à Casa</span><span class="lead"></span><span class="price">14€</span></li>
+        <li class="dish"><span class="name">Lombinhos de Porco na frigideira com molho de Mostarda</span><span class="lead"></span><span class="price">13,5€</span></li>
+        <li class="dish"><span class="name">Maminha Grelhada</span><span class="lead"></span><span class="price">15€</span></li>
+        <li class="dish"><span class="name">Piano na Grelha</span><span class="lead"></span><span class="price">13,5€</span></li>
+        <li class="dish"><span class="name">Plumas</span><span class="lead"></span><span class="price">15€</span></li>
+        <li class="dish"><span class="name">Bife da Vazia à Portuguesa / Grelhado</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Picanha</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Grelhada Mista</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Costelão de Vitela</span><span class="lead"></span><span class="price">24€</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Bebidas ===== -->
+    <section class="menu" id="bebidas">
+      <h2 class="sec-title">Bebidas</h2>
+      <div class="sec-rule"></div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Água <span class="unit">50cl</span></span><span class="lead"></span><span class="price">2€</span></li>
+        <li class="dish">
+          <span class="name">Refrigerante <span class="unit">33cl</span>
+            <span class="desc">Coca-cola, Coca-cola Zero, 7Up, Sprite, Ice Tea (Limão / Pêssego), Sumol (Laranja / Ananás)</span>
+          </span>
+          <span class="lead"></span><span class="price">2,5€</span>
+        </li>
+        <li class="dish"><span class="name">Água Tónica <span class="unit">25cl</span></span><span class="lead"></span><span class="price">2,5€</span></li>
+        <li class="dish"><span class="name">Sumo Natural</span><span class="lead"></span><span class="price">3,5€</span></li>
+        <li class="dish"><span class="name">Café Expresso</span><span class="lead"></span><span class="price">0,85€</span></li>
+        <li class="dish"><span class="name">Descafeínado</span><span class="lead"></span><span class="price">0,85€</span></li>
+        <li class="dish"><span class="name">Chá</span><span class="lead"></span><span class="price">1,5€</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Cerveja ===== -->
+    <section class="menu" id="cerveja">
+      <h2 class="sec-title">Cerveja</h2>
+      <div class="sec-rule"></div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Imperial Sagres</span><span class="lead"></span><span class="price">1,8€</span></li>
+        <li class="dish"><span class="name">Sagres <span class="unit">Garrafa 33cl</span></span><span class="lead"></span><span class="price">2,5€</span></li>
+        <li class="dish"><span class="name">Super Bock <span class="unit">Garrafa 33cl</span></span><span class="lead"></span><span class="price">2,5€</span></li>
+        <li class="dish"><span class="name">Sagres sem Álcool <span class="unit">33cl</span></span><span class="lead"></span><span class="price">2,5€</span></li>
+        <li class="dish"><span class="name">Heineken <span class="unit">Garrafa 33cl</span></span><span class="lead"></span><span class="price">2,5€</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Vinho da Casa ===== -->
+    <section class="menu wine" id="vinho-casa">
+      <h2 class="sec-title">Vinho da Casa</h2>
+      <div class="sec-rule"></div>
+      <p class="lead-note">Copo · 50cl · 1L</p>
+      <ul class="wine-list">
+        <li><span class="name">Vinho Branco da Casa</span><span class="measures"><b>Copo</b> 2,5€ &nbsp;|&nbsp; <b>50cl</b> 5€ &nbsp;|&nbsp; <b>1L</b> 8,5€</span></li>
+        <li><span class="name">Vinho Tinto da Casa</span><span class="measures"><b>Copo</b> 2,5€ &nbsp;|&nbsp; <b>50cl</b> 5€ &nbsp;|&nbsp; <b>1L</b> 8,5€</span></li>
+        <li><span class="name">Vinho Verde da Casa</span><span class="measures"><b>Copo</b> 2,5€ &nbsp;|&nbsp; <b>50cl</b> 5€ &nbsp;|&nbsp; <b>1L</b> 8,5€</span></li>
+        <li><span class="name">Sangria de Vinho Tinto</span><span class="measures"><b>Copo</b> 3€ &nbsp;|&nbsp; <b>50cl</b> 6,5€ &nbsp;|&nbsp; <b>1L</b> 11€</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Bar ===== -->
+    <section class="menu" id="bar">
+      <h2 class="sec-title">Bar</h2>
+      <div class="sec-rule"></div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Gin Tónico</span><span class="lead"></span><span class="price">6€</span></li>
+        <li class="dish"><span class="name">Whisky</span><span class="lead"></span><span class="price">5€</span></li>
+        <li class="dish"><span class="name">Whisky Velho</span><span class="lead"></span><span class="price">8€</span></li>
+        <li class="dish"><span class="name">Vinho do Porto</span><span class="lead"></span><span class="price">3,5€</span></li>
+        <li class="dish"><span class="name">Moscatel</span><span class="lead"></span><span class="price">3,5€</span></li>
+        <li class="dish"><span class="name">Licor Beirão</span><span class="lead"></span><span class="price">4€</span></li>
+        <li class="dish"><span class="name">Aguardente São Domingos</span><span class="lead"></span><span class="price">3,5€</span></li>
+        <li class="dish"><span class="name">Aguardente CRF</span><span class="lead"></span><span class="price">4,5€</span></li>
+      </ul>
+    </section>
+
+    <!-- ===== Carta de Vinhos ===== -->
+    <section class="menu" id="vinhos">
+      <h2 class="sec-title">Carta de Vinhos</h2>
+      <div class="sec-rule"></div>
+
+      <div class="region-label">Alentejo</div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Reguengos</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Tapada do Chaves</span><span class="lead"></span><span class="price">35€</span></li>
+        <li class="dish"><span class="name">Chaminé</span><span class="lead"></span><span class="price">23€</span></li>
+        <li class="dish"><span class="name">Olaria</span><span class="lead"></span><span class="price">16€</span></li>
+        <li class="dish"><span class="name">Convento da Vila</span><span class="lead"></span><span class="price">16€</span></li>
+        <li class="dish"><span class="name">Cartuxa</span><span class="lead"></span><span class="price">40€</span></li>
+        <li class="dish"><span class="name">Monsaraz</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Monte Baixo</span><span class="lead"></span><span class="price">16€</span></li>
+      </ul>
+
+      <div class="region-label">Setúbal</div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Periquita</span><span class="lead"></span><span class="price">17€</span></li>
+      </ul>
+
+      <div class="region-label">Douro</div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Rola</span><span class="lead"></span><span class="price">28€</span></li>
+        <li class="dish"><span class="name">Adega de Vila Real</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Papa Figos</span><span class="lead"></span><span class="price">22€</span></li>
+        <li class="dish"><span class="name">Vinhas de Murça</span><span class="lead"></span><span class="price">18€</span></li>
+      </ul>
+
+      <div class="region-label">Lisboa</div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">IndieGente</span><span class="lead"></span><span class="price">16€</span></li>
+        <li class="dish"><span class="name">Gaio Azul</span><span class="lead"></span><span class="price">12€</span></li>
+        <li class="dish"><span class="name">Porta da Travessa</span><span class="lead"></span><span class="price">17€</span></li>
+        <li class="dish"><span class="name">Terras del Rey</span><span class="lead"></span><span class="price">16€</span></li>
+      </ul>
+
+      <div class="region-label">Tejo</div>
+      <ul class="dishes">
+        <li class="dish"><span class="name">Bridão Clássico</span><span class="lead"></span><span class="price">16€</span></li>
+        <li class="dish"><span class="name">Bridão Private Collection</span><span class="lead"></span><span class="price">19€</span></li>
+        <li class="dish"><span class="name">Detalhe Reserva</span><span class="lead"></span><span class="price">24€</span></li>
+        <li class="dish"><span class="name">Vinha do General</span><span class="lead"></span><span class="price">19€</span></li>
+        <li class="dish"><span class="name">Cabeça de Toiro</span><span class="lead"></span><span class="price">20€</span></li>
+        <li class="dish"><span class="name">Escusa Doc</span><span class="lead"></span><span class="price">18€</span></li>
+        <li class="dish"><span class="name">Desalmado</span><span class="lead"></span><span class="price">55€</span></li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <svg class="fmark" viewBox="0 0 200 200" aria-hidden="true">
+      <circle cx="100" cy="100" r="82" fill="none" stroke="#2fd3e0" stroke-width="9"/>
+      <path d="M54 118 q40 -74 112 -22 q-26 -56 -80 -38 q40 8 48 48 q-48 -30 -80 12z" fill="#64e9eb"/>
+    </svg>
+    <div class="fscript">Lagoa Azul</div>
+    <div class="fsub">RESTAURANTE</div>
+    <p>Todos os preços são apresentados por pessoa e incluem IVA à taxa em vigor.</p>
+    <a class="back" href="#top">↑ Voltar ao topo</a>
+  </footer>
+
+</body>
+</html>
