@@ -280,7 +280,7 @@
   <section id="reservar">
     <div class="wrap center">
       <span class="pill-title">Marcar Mesa</span>
-      <p class="section-sub">Preencha o formulário e receberemos a sua reserva de imediato. Confirmamos consigo por telefone ou email.</p>
+      <p class="section-sub">Preencha o formulário e abrimos o WhatsApp com a sua reserva pronta a enviar. Confirmamos consigo o mais breve possível.</p>
     </div>
     <div class="form-shell">
       <form id="reservaForm" novalidate>
@@ -293,10 +293,6 @@
             <label for="telefone">Telefone *</label>
             <input type="tel" id="telefone" name="Telefone" placeholder="9XX XXX XXX" required>
           </div>
-        </div>
-        <div class="field">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="Email" placeholder="para contacto (opcional)">
         </div>
         <div class="grid-2">
           <div class="field">
@@ -322,7 +318,10 @@
           <textarea id="notas" name="Notas" placeholder="Alguma indicação que devamos saber?"></textarea>
         </div>
         <div class="form-actions">
-          <button type="submit" class="btn block" id="submitBtn">Confirmar reserva</button>
+          <button type="submit" class="btn block" id="submitBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:2px"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>
+            Enviar pelo WhatsApp
+          </button>
           <span class="form-note">* Campos obrigatórios</span>
         </div>
         <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
@@ -341,25 +340,13 @@
       <a href="#morada">Morada</a>
       <a href="#reservar">Marcar Mesa</a>
     </div>
-    <p>Tel. +351 214 951 895 · WhatsApp +244 924 129 295 · <a id="footerMail" href="#" style="color:#b7cddc;text-decoration:none;">reservas por email</a></p>
+    <p>Tel. <a href="tel:+351214951895" style="color:#b7cddc;text-decoration:none;">+351 214 951 895</a> · WhatsApp <a href="https://wa.me/244924129295" target="_blank" rel="noopener" style="color:#b7cddc;text-decoration:none;">+244 924 129 295</a></p>
     <small>© <span id="year"></span> Restaurante Lagoa Azul. Todos os direitos reservados.</small>
-    <small><a class="admin-link" href="admin/">Área de administração</a></small>
   </footer>
 
   <script>
-    // ---- Config -------------------------------------------------------------
-    // Email de destino das reservas. O valor por defeito abaixo é o que vale
-    // para TODOS os clientes. A página /admin pode guardar uma alteração
-    // apenas neste browser (localStorage).
-    var DEFAULT_RESERVATION_EMAIL = 'mariavcotter@gmail.com';
-
-    function getReservationEmail() {
-      try {
-        var saved = localStorage.getItem('lagoaazul_reservation_email');
-        if (saved && /\S+@\S+\.\S+/.test(saved)) return saved;
-      } catch (e) {}
-      return DEFAULT_RESERVATION_EMAIL;
-    }
+    // Número de WhatsApp do restaurante (formato internacional, sem + nem espaços)
+    var WHATSAPP_NUMBER = '244924129295';
 
     // ---- Nav ----------------------------------------------------------------
     document.getElementById('navToggle').addEventListener('click', function () {
@@ -372,7 +359,6 @@
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
-    document.getElementById('footerMail').href = 'mailto:' + getReservationEmail();
 
     // Data mínima = hoje
     var dataInput = document.getElementById('data');
@@ -381,58 +367,36 @@
       String(today.getMonth() + 1).padStart(2, '0') + '-' +
       String(today.getDate()).padStart(2, '0');
 
-    // ---- Reserva form -------------------------------------------------------
+    // ---- Reserva form → WhatsApp -------------------------------------------
     var form = document.getElementById('reservaForm');
     var msg = document.getElementById('formMsg');
-    var submitBtn = document.getElementById('submitBtn');
 
     function showMsg(text, type) {
-      msg.textContent = text;
+      msg.innerHTML = text;
       msg.className = 'form-msg ' + type;
     }
 
-    form.addEventListener('submit', async function (e) {
+    form.addEventListener('submit', function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
 
-      var email = getReservationEmail();
-      var payload = {
-        Nome: form.Nome.value.trim(),
-        Telefone: form.Telefone.value.trim(),
-        Email: form.Email.value.trim() || '(não indicado)',
-        Data: form.Data.value,
-        Hora: form.Hora.value,
-        Pessoas: form.Pessoas.value,
-        Notas: form.Notas.value.trim() || '(sem notas)',
-        _subject: 'Nova reserva — Lagoa Azul (' + form.Nome.value.trim() + ')',
-        _template: 'table',
-        _captcha: 'false'
-      };
+      var linhas = [
+        'Olá! Gostaria de marcar uma mesa no Lagoa Azul.',
+        '',
+        'Nome: ' + form.Nome.value.trim(),
+        'Telefone: ' + form.Telefone.value.trim(),
+        'Data: ' + form.Data.value,
+        'Hora: ' + form.Hora.value,
+        'Nº de pessoas: ' + form.Pessoas.value
+      ];
+      var notas = form.Notas.value.trim();
+      if (notas) linhas.push('Notas: ' + notas);
 
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'A enviar…';
-      showMsg('', '');
+      var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(linhas.join('\n'));
+      window.open(url, '_blank');
 
-      try {
-        var res = await fetch('https://formsubmit.co/ajax/' + encodeURIComponent(email), {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        var out = await res.json();
-        if (res.ok && (out.success === 'true' || out.success === true)) {
-          showMsg('✓ Reserva enviada! Vamos confirmar consigo o mais breve possível. Obrigado.', 'ok');
-          form.reset();
-        } else {
-          showMsg((out.message || 'Não foi possível enviar a reserva agora.') +
-            ' Se o problema persistir, ligue para +351 214 951 895.', 'err');
-        }
-      } catch (err) {
-        showMsg('Não foi possível enviar a reserva. Verifique a ligação à internet ou ligue para +351 214 951 895.', 'err');
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Confirmar reserva';
-      }
+      showMsg('✓ Abrimos o WhatsApp com a sua reserva. Toque em <strong>enviar</strong> para a confirmar. ' +
+        'Se o WhatsApp não abrir, <a href="' + url + '" target="_blank" rel="noopener" style="color:#c7f4fa;text-decoration:underline;">carregue aqui</a>.', 'ok');
     });
   </script>
 </body>
