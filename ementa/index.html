@@ -118,12 +118,17 @@
     .it-lead { flex: 1; border-bottom: 1px dotted rgba(111,224,236,.28); transform: translateY(-4px); min-width: 14px; }
     .it-price { font-weight: 700; font-size: 15px; color: var(--teal-soft); white-space: nowrap; flex-shrink: 0; }
 
-    /* variants (wine sizes) */
-    .variant { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 6px 0; border-bottom: 1px dashed rgba(111,224,236,.12); }
-    .variant:last-child { border-bottom: 0; }
-    .variant .it-name { font-weight: 600; }
-    .variant .sizes { color: var(--teal-soft); font-size: 13.5px; font-weight: 600; white-space: nowrap; }
-    .variant .sizes b { color: var(--muted); font-weight: 500; }
+    /* wine (labelled sizes) */
+    .wine { padding: 12px 0; border-bottom: 1px dashed rgba(111,224,236,.12); }
+    .wine:last-child { border-bottom: 0; }
+    .wine .wname { font-weight: 600; font-size: 15px; margin-bottom: 9px; }
+    .wine-sizes { display: flex; gap: 8px; flex-wrap: wrap; }
+    .wsz {
+      background: rgba(111,224,236,.06); border: 1px solid var(--line); border-radius: 10px;
+      padding: 6px 14px; text-align: center; min-width: 66px;
+    }
+    .wsz .wl { display: block; font-size: 10.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); font-weight: 500; }
+    .wsz .wp { display: block; font-size: 15px; font-weight: 700; color: var(--teal-soft); margin-top: 2px; }
 
     .menu-note { text-align: center; color: var(--muted); font-size: 13px; margin: 46px auto 0; max-width: 720px; font-weight: 300; }
 
@@ -285,11 +290,38 @@
 
         <div class="menu-group">
           <h2>Vinho da Casa</h2>
-          <p class="cat-note">Copo · 50cl · 1L</p>
-          <div class="variant"><span class="it-name">Vinho Branco da Casa</span><span class="sizes">2,5€ <b>·</b> 5€ <b>·</b> 8,5€</span></div>
-          <div class="variant"><span class="it-name">Vinho Tinto da Casa</span><span class="sizes">2,5€ <b>·</b> 5€ <b>·</b> 8,5€</span></div>
-          <div class="variant"><span class="it-name">Vinho Verde da Casa</span><span class="sizes">2,5€ <b>·</b> 5€ <b>·</b> 8,5€</span></div>
-          <div class="variant"><span class="it-name">Sangria de Vinho Tinto</span><span class="sizes">3€ <b>·</b> 6,5€ <b>·</b> 11€</span></div>
+          <div class="wine">
+            <div class="wname">Vinho Branco da Casa</div>
+            <div class="wine-sizes">
+              <span class="wsz"><span class="wl">Copo</span><span class="wp">2,5€</span></span>
+              <span class="wsz"><span class="wl">50cl</span><span class="wp">5€</span></span>
+              <span class="wsz"><span class="wl">1L</span><span class="wp">8,5€</span></span>
+            </div>
+          </div>
+          <div class="wine">
+            <div class="wname">Vinho Tinto da Casa</div>
+            <div class="wine-sizes">
+              <span class="wsz"><span class="wl">Copo</span><span class="wp">2,5€</span></span>
+              <span class="wsz"><span class="wl">50cl</span><span class="wp">5€</span></span>
+              <span class="wsz"><span class="wl">1L</span><span class="wp">8,5€</span></span>
+            </div>
+          </div>
+          <div class="wine">
+            <div class="wname">Vinho Verde da Casa</div>
+            <div class="wine-sizes">
+              <span class="wsz"><span class="wl">Copo</span><span class="wp">2,5€</span></span>
+              <span class="wsz"><span class="wl">50cl</span><span class="wp">5€</span></span>
+              <span class="wsz"><span class="wl">1L</span><span class="wp">8,5€</span></span>
+            </div>
+          </div>
+          <div class="wine">
+            <div class="wname">Sangria de Vinho Tinto</div>
+            <div class="wine-sizes">
+              <span class="wsz"><span class="wl">Copo</span><span class="wp">3€</span></span>
+              <span class="wsz"><span class="wl">50cl</span><span class="wp">6,5€</span></span>
+              <span class="wsz"><span class="wl">1L</span><span class="wp">11€</span></span>
+            </div>
+          </div>
         </div>
 
         <div class="menu-group">
