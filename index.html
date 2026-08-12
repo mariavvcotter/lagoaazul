@@ -3,404 +3,76 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lagoa Azul · Restaurante</title>
-  <meta name="description" content="Restaurante Lagoa Azul — buffet africano e cozinha tradicional portuguesa. Menu de almoço a 12€, ambiente tranquilo e estacionamento fácil. Reserve a sua mesa online.">
+  <title>Lagoa Azul · Serviço temporariamente indisponível</title>
+  <meta name="robots" content="noindex">
   <link rel="icon" type="image/png" href="assets/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --blue-950: #082334;
-      --blue-900: #0a2c42;
-      --blue-800: #0d374f;
-      --blue-700: #124a70;
-      --blue-600: #17537c;
-      --teal: #2fbfd4;
-      --teal-soft: #6fe0ec;
-      --cream: #dff2f7;
-      --text: #eaf6f9;
-      --muted: #a9c4d6;
-      --line: rgba(111, 224, 236, 0.16);
+      --blue-950:#082334; --blue-900:#0a2c42; --blue-800:#0d374f; --blue-700:#124a70; --blue-600:#17537c;
+      --teal:#2fbfd4; --teal-soft:#6fe0ec; --text:#eaf6f9; --muted:#a9c4d6; --line:rgba(111,224,236,.16);
       --scale: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='30' viewBox='0 0 60 30'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1.4'%3E%3Cpath d='M0 30 Q15 2 30 30 Q45 2 60 30'/%3E%3Cpath d='M-30 15 Q-15 -13 0 15 Q15 -13 30 15 Q45 -13 60 15 Q75 -13 90 15'/%3E%3C/g%3E%3C/svg%3E");
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
     body {
       font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
-      color: var(--text);
-      background: var(--blue-900);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; }
-    img { max-width: 100%; display: block; }
-    .wrap { max-width: 1140px; margin: 0 auto; }
-
-    /* Buttons */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      background: var(--teal); color: #05303b; text-decoration: none;
-      padding: 13px 26px; border-radius: 999px; font-weight: 700; font-size: 14px; letter-spacing: .3px;
-      border: none; cursor: pointer; transition: transform .15s ease, box-shadow .2s ease, background .2s;
-      box-shadow: 0 10px 26px rgba(47, 191, 212, 0.35);
-    }
-    .btn:hover { transform: translateY(-1px); background: var(--teal-soft); box-shadow: 0 14px 32px rgba(47, 191, 212, 0.45); }
-    .btn.ghost { background: transparent; color: var(--teal-soft); border: 1px solid rgba(111,224,236,.5); box-shadow: none; }
-    .btn.ghost:hover { background: rgba(111,224,236,.1); color: #fff; }
-
-    /* Header / nav */
-    header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(10, 44, 66, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
-    }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 24px; }
-    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-    .brand img.mark { height: 40px; width: auto; }
-    .brand img.word { height: 26px; width: auto; }
-    .nav-links { display: flex; align-items: center; gap: 26px; }
-    .nav-links a { color: #d3e6f2; text-decoration: none; font-size: 13.5px; font-weight: 500; letter-spacing: .3px; transition: color .2s; }
-    .nav-links a:hover { color: var(--teal-soft); }
-    .nav-toggle { display: none; background: none; border: 0; color: #fff; cursor: pointer; }
-
-    /* Hero */
-    .hero {
-      position: relative; text-align: center; color: var(--text); overflow: hidden;
-      padding: 96px 24px 104px;
-      background: var(--scale), radial-gradient(1100px 560px at 50% -10%, rgba(47,191,212,.18), transparent 60%),
+      color: var(--text); min-height: 100vh; text-align: center;
+      display: flex; align-items: center; justify-content: center; padding: 32px 24px;
+      background: var(--scale),
+        radial-gradient(1000px 520px at 50% -10%, rgba(47,191,212,.18), transparent 60%),
         linear-gradient(180deg, var(--blue-800) 0%, var(--blue-900) 50%, var(--blue-950) 100%);
       background-size: 60px 30px, auto, auto;
+      -webkit-font-smoothing: antialiased;
     }
-    .hero .mark { height: 132px; margin: 0 auto 22px; filter: drop-shadow(0 8px 24px rgba(0,0,0,.28)); }
-    .hero .wordmark { height: clamp(64px, 12vw, 128px); margin: 0 auto 12px; width: auto; }
-    .hero .restaurante { text-transform: uppercase; letter-spacing: 10px; font-size: clamp(12px, 2.4vw, 16px); color: var(--teal-soft); font-weight: 500; margin-bottom: 26px; padding-left: 10px; }
-    .hero p { max-width: 620px; margin: 0 auto 32px; color: #cfe2ee; font-size: 18px; font-weight: 300; }
-    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
-
-    /* Sections */
-    section { padding: 84px 24px; }
-    .pill-title {
-      display: inline-block; background: linear-gradient(180deg, #eefafc, var(--cream));
-      color: var(--blue-700); font-weight: 800; letter-spacing: .5px;
-      font-size: clamp(24px, 4.4vw, 40px); text-transform: uppercase; line-height: 1.1;
-      padding: 14px 40px; border-radius: 999px; box-shadow: 0 12px 30px rgba(3,20,34,.28);
+    .box { max-width: 560px; }
+    .mark { height: 132px; margin: 0 auto 22px; filter: drop-shadow(0 8px 24px rgba(0,0,0,.28)); }
+    .wordmark { height: clamp(58px, 12vw, 104px); width: auto; margin: 0 auto 10px; }
+    .restaurante { text-transform: uppercase; letter-spacing: 10px; font-size: 14px; color: var(--teal-soft); font-weight: 500; margin-bottom: 40px; padding-left: 10px; }
+    .badge {
+      display: inline-block; background: linear-gradient(180deg, #eefafc, #dff2f7); color: var(--blue-700);
+      font-weight: 700; text-transform: uppercase; letter-spacing: .5px; font-size: clamp(15px, 3.2vw, 20px);
+      padding: 12px 30px; border-radius: 999px; box-shadow: 0 12px 30px rgba(3,20,34,.3); margin-bottom: 26px;
     }
-    .center { text-align: center; }
-    .section-sub { color: var(--muted); max-width: 640px; margin: 22px auto 0; }
-
-    /* Sobre */
-    .about { display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; margin-top: 8px; }
-    .about h2 { font-size: clamp(26px, 3.6vw, 38px); font-weight: 700; line-height: 1.15; margin-bottom: 16px; }
-    .about h2 em { color: var(--teal-soft); font-style: normal; }
-    .about p { color: #cbdeeb; font-weight: 300; }
-    .features { list-style: none; margin-top: 24px; display: grid; gap: 13px; }
-    .features li { position: relative; padding-left: 34px; color: #dbeaf3; font-size: 15.5px; }
-    .features li::before {
-      content: ""; position: absolute; left: 0; top: 2px; width: 22px; height: 22px; border-radius: 50%;
-      background: rgba(47,191,212,.18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236fe0ec' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/12px no-repeat;
+    h1 { font-size: clamp(24px, 5vw, 34px); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    p { color: #cbdeeb; font-weight: 300; font-size: 17px; max-width: 440px; margin: 0 auto; }
+    .contact { margin-top: 34px; padding-top: 26px; border-top: 1px solid var(--line); display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 9px; text-decoration: none;
+      padding: 13px 24px; border-radius: 999px; font-weight: 700; font-size: 14px; letter-spacing: .3px;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s;
     }
-    .price-card {
-      background: linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.03));
-      border: 1px solid var(--line); border-radius: 22px; padding: 38px; text-align: center;
-      box-shadow: 0 24px 60px rgba(3,16,28,.35);
-    }
-    .price-card .euro { font-size: 66px; font-weight: 800; color: var(--teal-soft); line-height: 1; }
-    .price-card h3 { font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin: 8px 0 12px; }
-    .price-card p { color: #cbdeeb; font-weight: 300; font-size: 15px; }
-
-    /* Cream section (contactos) */
-    .section-cream { background: linear-gradient(180deg, #eaf8fb, var(--cream)); color: var(--blue-800); }
-    .section-cream .pill-title { background: var(--blue-700); color: #fff; box-shadow: 0 12px 30px rgba(3,20,34,.18); }
-    .section-cream .section-sub { color: #3f6076; }
-    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 50px; }
-    .card {
-      background: #fff; border: 1px solid #d5e8ee; border-radius: 18px; padding: 28px;
-      box-shadow: 0 12px 30px rgba(12, 52, 80, 0.08); transition: transform .2s, box-shadow .2s;
-    }
-    .card:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(12, 52, 80, 0.14); }
-    .card .ic {
-      width: 48px; height: 48px; border-radius: 13px; display: grid; place-items: center;
-      background: rgba(47,191,212,.14); color: #147a8c; margin-bottom: 16px;
-    }
-    .card h3 { font-size: 15px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: var(--blue-700); }
-    .card a { color: #147a8c; text-decoration: none; font-weight: 600; }
-    .card a:hover { text-decoration: underline; }
-    .card p { font-size: 15px; color: #35586c; }
-    .card .muted { color: #5a7488; }
-    .hours-row { display: flex; justify-content: space-between; font-size: 14.5px; color: #35586c; padding: 3px 0; }
-    .hours-row span:last-child { color: #147a8c; font-weight: 600; }
-
-    /* Reservar */
-    #reservar { position: relative; background: var(--scale), linear-gradient(180deg, var(--blue-900), var(--blue-950)); background-size: 60px 30px, auto; }
-    .form-shell {
-      max-width: 760px; margin: 50px auto 0; background: rgba(255,255,255,0.05);
-      border: 1px solid var(--line); border-radius: 24px; padding: 40px; backdrop-filter: blur(6px);
-      box-shadow: 0 24px 60px rgba(3,16,28,.35);
-    }
-    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .field { margin-bottom: 18px; }
-    .field label { display: block; font-size: 12.5px; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-weight: 500; }
-    .field input, .field select, .field textarea {
-      width: 100%; padding: 13px 15px; border-radius: 12px; border: 1px solid rgba(111,224,236,.28);
-      background: rgba(12, 52, 80, 0.5); color: var(--text); font-family: inherit; font-size: 15px;
-      transition: border-color .2s, box-shadow .2s;
-    }
-    .field input:focus, .field select:focus, .field textarea:focus {
-      outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(47,191,212,.18);
-    }
-    .field textarea { resize: vertical; min-height: 92px; }
-    .field input::placeholder, .field textarea::placeholder { color: #79a0b8; }
-    .field select option { color: #0c3450; }
-    .form-actions { margin-top: 6px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .btn.block { padding: 15px 34px; font-size: 15px; }
-    .form-note { font-size: 12.5px; color: var(--muted); }
-    .form-msg { margin-top: 18px; padding: 14px 18px; border-radius: 12px; font-size: 14px; display: none; }
-    .form-msg.ok { display: block; background: rgba(47,191,212,.14); border: 1px solid rgba(47,191,212,.45); color: #c7f4fa; }
-    .form-msg.err { display: block; background: rgba(255,138,128,.12); border: 1px solid rgba(255,138,128,.45); color: #ffb4ab; }
-
-    /* Footer */
-    footer { background: var(--blue-950); color: #8fabbf; padding: 46px 24px; text-align: center; border-top: 1px solid var(--line); }
-    footer .brand { justify-content: center; margin-bottom: 16px; }
-    footer .fnav { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin: 14px 0; }
-    footer .fnav a { color: #b7cddc; text-decoration: none; font-size: 14px; }
-    footer .fnav a:hover { color: var(--teal-soft); }
-    footer small { display: block; margin-top: 12px; color: #6d889c; }
-    footer .admin-link { color: #486277; font-size: 12px; text-decoration: none; }
-
-    @media (max-width: 1080px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 880px) {
-      .about { grid-template-columns: 1fr; gap: 36px; }
-      .nav-links { display: none; }
-      .nav-toggle { display: block; }
-      .nav-links.open {
-        display: flex; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column;
-        gap: 18px; padding: 22px 24px; background: rgba(10,44,66,.98); border-bottom: 1px solid var(--line);
-      }
-      .grid-2 { grid-template-columns: 1fr; }
-      .cards { grid-template-columns: 1fr; }
-      section { padding: 62px 20px; }
-    }
+    .btn.call { background: var(--teal); color: #05303b; box-shadow: 0 10px 26px rgba(47,191,212,.35); }
+    .btn.call:hover { transform: translateY(-1px); background: var(--teal-soft); }
+    .btn.wa { background: transparent; color: var(--teal-soft); border: 1px solid rgba(111,224,236,.5); }
+    .btn.wa:hover { background: rgba(111,224,236,.1); color: #fff; }
+    .foot { margin-top: 30px; color: #6d889c; font-size: 13px; }
   </style>
 </head>
 <body>
-  <header>
-    <nav class="nav wrap">
-      <a class="brand" href="#top" aria-label="Lagoa Azul">
-        <img class="mark" src="assets/logo.png" alt="Lagoa Azul">
-        <img class="word" src="assets/wordmark.png" alt="Lagoa Azul">
-      </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#sobre">Sobre</a>
-        <a href="ementa/">Ementa</a>
-        <a href="#contactos">Contactos</a>
-        <a href="#morada">Morada</a>
-        <a class="btn" href="#reservar">Marcar Mesa</a>
-      </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-      </button>
-    </nav>
-  </header>
-
-  <a id="top"></a>
-
-  <!-- Hero -->
-  <div class="hero">
-    <img class="mark" src="assets/logo.png" alt="Logótipo Lagoa Azul">
+  <div class="box">
+    <img class="mark" src="assets/logo.png" alt="Lagoa Azul">
     <img class="wordmark" src="assets/wordmark.png" alt="Lagoa Azul">
     <div class="restaurante">Restaurante</div>
-    <p>Buffet africano e cozinha tradicional portuguesa, num ambiente tranquilo e acolhedor. Boa comida, estacionamento fácil e menu de almoço a 12€.</p>
-    <div class="hero-actions">
-      <a class="btn block" href="#reservar">Marcar Mesa</a>
-      <a class="btn ghost" href="#contactos">Contactos</a>
+
+    <div class="badge">Serviço temporariamente indisponível</div>
+    <h1>Voltamos em breve</h1>
+    <p>Estamos a fazer algumas melhorias no nosso site. Obrigado pela sua paciência — para reservas ou informações, contacte-nos.</p>
+
+    <div class="contact">
+      <a class="btn call" href="tel:+351214951895">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        +351 214 951 895
+      </a>
+      <a class="btn wa" href="https://wa.me/244924129295" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        WhatsApp
+      </a>
     </div>
+
+    <p class="foot">© <span id="year"></span> Restaurante Lagoa Azul</p>
   </div>
-
-  <!-- Sobre -->
-  <section id="sobre">
-    <div class="wrap center" style="margin-bottom:52px;">
-      <span class="pill-title">A nossa casa</span>
-    </div>
-    <div class="wrap about">
-      <div>
-        <h2>Um ponto de encontro <em>intercultural</em></h2>
-        <p>No Lagoa Azul juntamos o melhor de dois mundos: um <strong>buffet africano</strong> cheio de sabor e a <strong>cozinha tradicional portuguesa</strong> de sempre. Boa comida, servida num ambiente calmo e acolhedor.</p>
-        <ul class="features">
-          <li>Buffet africano &amp; cozinha tradicional portuguesa</li>
-          <li>Ambiente tranquilo, ideal para almoços e jantares</li>
-          <li>Localização calma e com estacionamento fácil</li>
-          <li>Menu de almoço a 12€</li>
-        </ul>
-      </div>
-      <div class="price-card">
-        <div class="euro">12€</div>
-        <h3>Menu de almoço</h3>
-        <p>Prato, bebida (refrigerante, imperial 20cl ou vinho a copo) — um almoço completo por apenas 12€, de terça a sábado.</p>
-        <a class="btn" style="margin-top:22px;" href="#reservar">Marcar Mesa</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contactos + Morada + Horário -->
-  <section id="contactos" class="section-cream">
-    <div class="wrap center">
-      <span class="pill-title">Contactos</span>
-      <p class="section-sub">Estamos à sua disposição. Ligue, escreva ou passe por cá.</p>
-      <div class="cards" style="text-align:left;">
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></div>
-          <h3>Telefone</h3>
-          <p><a href="tel:+351214951895">+351 214 951 895</a></p>
-          <p class="muted">Ligue para marcar mesa</p>
-        </div>
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg></div>
-          <h3>WhatsApp</h3>
-          <p><a href="https://wa.me/244924129295" target="_blank" rel="noopener">+244 924 129 295</a></p>
-          <p style="margin-top:8px;"><a href="https://wa.me/244924129295?text=Ol%C3%A1%2C%20gostaria%20de%20marcar%20uma%20mesa%20no%20Lagoa%20Azul." target="_blank" rel="noopener">Abrir conversa →</a></p>
-        </div>
-        <div class="card" id="morada">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-          <h3>Morada</h3>
-          <p class="muted" id="addressText">Lagoa Azul, Portugal</p>
-          <p style="margin-top:10px;"><a id="mapLink" href="https://www.google.com/maps/search/?api=1&query=Restaurante+Lagoa+Azul" target="_blank" rel="noopener">Ver no mapa →</a></p>
-        </div>
-        <div class="card">
-          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-          <h3>Horário</h3>
-          <div class="hours-row"><span>Ter – Sáb</span><span>11:00 – 23:00</span></div>
-          <div class="hours-row"><span>Cozinha</span><span>12:00 – 22:00</span></div>
-          <div class="hours-row"><span>Encerra</span><span>Dom e Seg</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Reservar -->
-  <section id="reservar">
-    <div class="wrap center">
-      <span class="pill-title">Marcar Mesa</span>
-      <p class="section-sub">Preencha o formulário e abrimos o WhatsApp com a sua reserva pronta a enviar. Confirmamos consigo o mais breve possível.</p>
-    </div>
-    <div class="form-shell">
-      <form id="reservaForm" novalidate>
-        <div class="grid-2">
-          <div class="field">
-            <label for="nome">Nome *</label>
-            <input type="text" id="nome" name="Nome" placeholder="O seu nome" required>
-          </div>
-          <div class="field">
-            <label for="telefone">Telefone *</label>
-            <input type="tel" id="telefone" name="Telefone" placeholder="9XX XXX XXX" required>
-          </div>
-        </div>
-        <div class="grid-2">
-          <div class="field">
-            <label for="data">Data *</label>
-            <input type="date" id="data" name="Data" required>
-          </div>
-          <div class="field">
-            <label for="hora">Hora *</label>
-            <input type="time" id="hora" name="Hora" required>
-          </div>
-        </div>
-        <div class="field">
-          <label for="pessoas">Nº de pessoas *</label>
-          <select id="pessoas" name="Pessoas" required>
-            <option value="" disabled selected>Selecionar</option>
-            <option>1</option><option>2</option><option>3</option><option>4</option>
-            <option>5</option><option>6</option><option>7</option><option>8</option>
-            <option>9</option><option>10</option><option>Mais de 10</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="notas">Notas (alergias, ocasião especial…)</label>
-          <textarea id="notas" name="Notas" placeholder="Alguma indicação que devamos saber?"></textarea>
-        </div>
-        <div class="form-actions">
-          <button type="submit" class="btn block" id="submitBtn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:2px"><path d="M21 11.5a8.4 8.4 0 0 1-12.2 7.5L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>
-            Enviar pelo WhatsApp
-          </button>
-          <span class="form-note">* Campos obrigatórios</span>
-        </div>
-        <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
-      </form>
-    </div>
-  </section>
-
-  <footer>
-    <a class="brand" href="#top">
-      <img class="mark" src="assets/logo.png" alt="" style="height:36px;">
-      <img class="word" src="assets/wordmark.png" alt="Lagoa Azul" style="height:24px;">
-    </a>
-    <div class="fnav">
-      <a href="#sobre">Sobre</a>
-      <a href="ementa/">Ementa</a>
-      <a href="#contactos">Contactos</a>
-      <a href="#morada">Morada</a>
-      <a href="#reservar">Marcar Mesa</a>
-    </div>
-    <p>Tel. <a href="tel:+351214951895" style="color:#b7cddc;text-decoration:none;">+351 214 951 895</a> · WhatsApp <a href="https://wa.me/244924129295" target="_blank" rel="noopener" style="color:#b7cddc;text-decoration:none;">+244 924 129 295</a></p>
-    <small>© <span id="year"></span> Restaurante Lagoa Azul. Todos os direitos reservados.</small>
-  </footer>
-
-  <script>
-    // Número de WhatsApp do restaurante (formato internacional, sem + nem espaços)
-    var WHATSAPP_NUMBER = '244924129295';
-
-    // ---- Nav ----------------------------------------------------------------
-    document.getElementById('navToggle').addEventListener('click', function () {
-      document.getElementById('navLinks').classList.toggle('open');
-    });
-    document.querySelectorAll('#navLinks a').forEach(function (a) {
-      a.addEventListener('click', function () {
-        document.getElementById('navLinks').classList.remove('open');
-      });
-    });
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Data mínima = hoje
-    var dataInput = document.getElementById('data');
-    var today = new Date();
-    dataInput.min = today.getFullYear() + '-' +
-      String(today.getMonth() + 1).padStart(2, '0') + '-' +
-      String(today.getDate()).padStart(2, '0');
-
-    // ---- Reserva form → WhatsApp -------------------------------------------
-    var form = document.getElementById('reservaForm');
-    var msg = document.getElementById('formMsg');
-
-    function showMsg(text, type) {
-      msg.innerHTML = text;
-      msg.className = 'form-msg ' + type;
-    }
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-
-      var linhas = [
-        'Olá! Gostaria de marcar uma mesa no Lagoa Azul.',
-        '',
-        'Nome: ' + form.Nome.value.trim(),
-        'Telefone: ' + form.Telefone.value.trim(),
-        'Data: ' + form.Data.value,
-        'Hora: ' + form.Hora.value,
-        'Nº de pessoas: ' + form.Pessoas.value
-      ];
-      var notas = form.Notas.value.trim();
-      if (notas) linhas.push('Notas: ' + notas);
-
-      var url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(linhas.join('\n'));
-      window.open(url, '_blank');
-
-      showMsg('✓ Abrimos o WhatsApp com a sua reserva. Toque em <strong>enviar</strong> para a confirmar. ' +
-        'Se o WhatsApp não abrir, <a href="' + url + '" target="_blank" rel="noopener" style="color:#c7f4fa;text-decoration:underline;">carregue aqui</a>.', 'ok');
-    });
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
